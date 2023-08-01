@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  CompleteList.swift
 //  ToDoList
 //
 //  Created by Lee on 2023/08/01.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class CompleteListViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
     
     
