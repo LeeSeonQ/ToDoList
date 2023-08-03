@@ -62,27 +62,62 @@
         <scene sceneID="Az2-Tw-XVA">
             <objects>
                 <viewController id="yYm-pE-nMV" customClass="CheckListViewController" customModule="ToDoList" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="toV-6a-1lZ">
+                    <view key="view" contentMode="scaleToFill" id="toV-6a-1lZ" customClass="UITab">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="c6T-3d-jRg">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="nVx-T3-frb">
                                 <rect key="frame" x="0.0" y="103" width="393" height="715"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="CNc-Vi-pzE" customClass="TableViewCell" customModule="ToDoList" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="43.333332061767578"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CNc-Vi-pzE" id="NN3-6i-wP4">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="43.333332061767578"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" title="completeSwitch" translatesAutoresizingMaskIntoConstraints="NO" id="eC8-jI-EfO">
+                                                    <rect key="frame" x="324" y="5.9999999999999982" width="51" height="31.333333333333329"/>
+                                                </switch>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="eC8-jI-EfO" secondAttribute="trailing" constant="20" id="8E7-Zt-bF6"/>
+                                                <constraint firstAttribute="bottom" secondItem="eC8-jI-EfO" secondAttribute="bottom" constant="6" id="ey9-VM-IrG"/>
+                                                <constraint firstItem="eC8-jI-EfO" firstAttribute="top" secondItem="NN3-6i-wP4" secondAttribute="top" constant="6" id="kyh-dq-YJh"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="completeSwitch" destination="eC8-jI-EfO" id="vvc-8Z-7AC"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="yYm-pE-nMV" id="sWk-lM-Yb8"/>
+                                    <outlet property="delegate" destination="yYm-pE-nMV" id="W3q-TZ-UYS"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="wUh-cs-hNq"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="wUh-cs-hNq" firstAttribute="trailing" secondItem="c6T-3d-jRg" secondAttribute="trailing" id="2XB-Tj-QZG"/>
-                            <constraint firstItem="wUh-cs-hNq" firstAttribute="bottom" secondItem="c6T-3d-jRg" secondAttribute="bottom" id="AcK-5r-CKp"/>
-                            <constraint firstItem="c6T-3d-jRg" firstAttribute="leading" secondItem="wUh-cs-hNq" secondAttribute="leading" id="T1w-WJ-a5a"/>
-                            <constraint firstItem="c6T-3d-jRg" firstAttribute="top" secondItem="wUh-cs-hNq" secondAttribute="top" id="qQb-n0-AY9"/>
+                            <constraint firstItem="wUh-cs-hNq" firstAttribute="trailing" secondItem="nVx-T3-frb" secondAttribute="trailing" id="7YP-Ly-3DJ"/>
+                            <constraint firstItem="wUh-cs-hNq" firstAttribute="bottom" secondItem="nVx-T3-frb" secondAttribute="bottom" id="bKU-dZ-PB5"/>
+                            <constraint firstItem="nVx-T3-frb" firstAttribute="leading" secondItem="wUh-cs-hNq" secondAttribute="leading" id="qAP-sE-anJ"/>
+                            <constraint firstItem="nVx-T3-frb" firstAttribute="top" secondItem="wUh-cs-hNq" secondAttribute="top" id="seZ-Sr-P5f"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="CheckList" id="DZu-gc-2PG">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="urk-Tr-X6B"/>
+                        <barButtonItem key="rightBarButtonItem" title="plusButtonItem" image="plus" catalog="system" id="urk-Tr-X6B">
+                            <connections>
+                                <action selector="addButtonTapped:" destination="yYm-pE-nMV" id="UqD-LJ-bQ1"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="addButton" destination="urk-Tr-X6B" id="7YR-dv-X4v"/>
+                        <outlet property="checkListTableView" destination="nVx-T3-frb" id="yCp-Qr-SLj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zuq-bj-xSP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -99,6 +134,16 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="VQh-Cb-pK5">
                                 <rect key="frame" x="0.0" y="103" width="393" height="715"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="bKe-pG-e2C">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bKe-pG-e2C" id="UtE-qX-DyK">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Inz-7d-9OY"/>
@@ -137,6 +182,7 @@
     </scenes>
     <resources>
         <image name="CheckBox" width="228" height="228.33332824707031"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
