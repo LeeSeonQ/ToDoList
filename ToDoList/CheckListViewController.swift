@@ -6,38 +6,33 @@
 //
 import UIKit
 
-class CheckListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+
+
+class CheckListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,DetailViewControllerDelegate {
     
-    //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    //        tableView.deselectRow(at: indexPath, animated: true)
-    //    
-    //    }
+    @IBOutlet weak var checking: UIBarButtonItem!
+    
     @IBOutlet weak var checkListTableView: UITableView!
     
+    
     var items: [String] = []
-    var isCompleted: [Bool] = []
-    
-    //    func strikeThrough() -> NSAttributedString {
-    //        let attributeString: NSMutableAttributedString = NSMutableAttributedString(string: self)
-    //        attributeString.addAttribute(NSAttributedString.Key, value: NSUnderlineStyle.single.rawValue, range: NSMakeRange(0, attributeString.length))
-    //
-    //    }
-    
-    
-    
-    
+    var completedItems: [String] = []
     
     
     @IBOutlet weak var addButton: UIBarButtonItem!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    @IBAction func checkingButton(_ sender: UIButton) {
+        let completeListVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CompleteListViewController") as! CompleteListViewController
         
+        completeListVC.completedItems = UserDefaults.standard.stringArray(forKey: "completedItems") ?? []
         
+        self.navigationController?.pushViewController(completeListVC, animated: true)
         
+      
+        printCompletedItems()
     }
     
-    
+
     @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
         let alertController = UIAlertController(title: "새 항목 추가", message: "원하는 List 추가", preferredStyle: .alert)
         
@@ -71,41 +66,70 @@ class CheckListViewController: UIViewController, UITableViewDelegate, UITableVie
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TableViewCell
         let item = items[indexPath.row]
         cell.textLabel?.text = item
-        //        let isSwitchOn = isCompleted[indexPath.row]
-        let isSwitchOn: Bool
-        if indexPath.row < isCompleted.count {
-            isSwitchOn = isCompleted[indexPath.row]
-        } else {
-            isSwitchOn = false
-        }
-        let attributedText = NSMutableAttributedString(string: item)
-        if isSwitchOn {
-            attributedText.addAttribute(.strikethroughStyle, value: NSUnderlineStyle.single.rawValue, range: NSRange(location: 0, length: attributedText.length))
-            attributedText.addAttribute(.strikethroughColor, value: UIColor.black, range: NSRange(location: 0, length: attributedText.length))
-            
-        }
-        cell.textLabel?.attributedText = attributedText
-        
-        cell.completeSwitch.isOn = isSwitchOn
-        cell.completeSwitch.tag = indexPath.row
         
         return cell
     }
     
     
     @IBAction func completeSwitchTapped(_ sender: UISwitch) {
-        if let cell = sender.superview?.superview as? TableViewCell,
-           let indexPath = self.checkListTableView.indexPath(for: cell) {
+        if let cell = sender.superview?.superview as? UITableViewCell,
+           let indexPath = checkListTableView.indexPath(for: cell) {
             let rowIndex = indexPath.row
-            isCompleted[rowIndex] = sender.isOn
-            checkListTableView.reloadRows(at: [indexPath], with: .none)
+            let item = items[rowIndex]
+            
+            switch sender.isOn {
+            case true:
+                let attributedString = NSAttributedString(string: item, attributes: [
+                    .strikethroughStyle: NSUnderlineStyle.single.rawValue,
+                    .strikethroughColor: UIColor.red
+                ])
+                cell.textLabel?.attributedText = attributedString
+                print("\(item) 항목의 스위치가 켜졌습니다")
+            default:
+                cell.textLabel?.text = item
+                print("\(item) 항목의 스위치가 꺼졌습니다")
+                
+                
+                items[rowIndex] = item
+                checkListTableView.reloadRows(at: [IndexPath(row: rowIndex, section: 0)], with: .none)
+            }
+        }
+        
+        
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "DS",
+           let detailVC = segue.destination as? DetailViewController,
+           let indexPath = checkListTableView.indexPathForSelectedRow {
+            let selectedItem = items[indexPath.row]
+            detailVC.itemText = selectedItem
+            detailVC.delegate = self
         }
     }
     
+    func didDeleteItem(_ item: String) {
+        if let index = items.firstIndex(of: item) {
+            items.remove(at: index)
+            checkListTableView.reloadData()
+        }
+    }
     
-    
-    
-    
-}
-    
+    func didThrowCompleteItem(_ item: String) {
+        if let index = items.firstIndex(of: item) {
+            let completedItem = items.remove(at: index)
+            completedItems.append(completedItem)
+            UserDefaults.standard.set(completedItems, forKey: "completedItems")
+            checkListTableView.reloadData()
+            
+        }
+    }
 
+    
+  
+    func printCompletedItems() {
+        let completedItems = UserDefaults.standard.stringArray(forKey: "completedItems") ?? []
+        for item in completedItems {
+            print(item)
+        }
+    }
+}

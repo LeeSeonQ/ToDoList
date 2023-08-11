@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9B8BF78A2A85E099005C230F /* CompleteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8BF7892A85E099005C230F /* CompleteTableViewCell.swift */; };
 		9BA8C8412A78BB0E0002282C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA8C8402A78BB0E0002282C /* AppDelegate.swift */; };
 		9BA8C8432A78BB0E0002282C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA8C8422A78BB0E0002282C /* SceneDelegate.swift */; };
 		9BA8C8452A78BB0E0002282C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA8C8442A78BB0E0002282C /* ViewController.swift */; };
@@ -16,9 +17,11 @@
 		9BAA0BA92A7910910015D77A /* CheckListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAA0BA82A7910910015D77A /* CheckListViewController.swift */; };
 		9BAA0BAB2A7914070015D77A /* CompleteListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAA0BAA2A7914070015D77A /* CompleteListViewController.swift */; };
 		9BAA0BB32A7A5A7A0015D77A /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAA0BB22A7A5A7A0015D77A /* TableViewCell.swift */; };
+		9BAA0BB72A81F4570015D77A /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAA0BB62A81F4570015D77A /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9B8BF7892A85E099005C230F /* CompleteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteTableViewCell.swift; sourceTree = "<group>"; };
 		9BA8C83D2A78BB0E0002282C /* ToDoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BA8C8402A78BB0E0002282C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9BA8C8422A78BB0E0002282C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -30,6 +33,7 @@
 		9BAA0BA82A7910910015D77A /* CheckListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckListViewController.swift; sourceTree = "<group>"; };
 		9BAA0BAA2A7914070015D77A /* CompleteListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteListViewController.swift; sourceTree = "<group>"; };
 		9BAA0BB22A7A5A7A0015D77A /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		9BAA0BB62A81F4570015D77A /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +72,8 @@
 				9BAA0BB22A7A5A7A0015D77A /* TableViewCell.swift */,
 				9BAA0BA82A7910910015D77A /* CheckListViewController.swift */,
 				9BAA0BAA2A7914070015D77A /* CompleteListViewController.swift */,
+				9B8BF7892A85E099005C230F /* CompleteTableViewCell.swift */,
+				9BAA0BB62A81F4570015D77A /* DetailViewController.swift */,
 				9BA8C8462A78BB0E0002282C /* Main.storyboard */,
 				9BA8C8492A78BB0F0002282C /* Assets.xcassets */,
 				9BA8C84B2A78BB0F0002282C /* LaunchScreen.storyboard */,
@@ -149,10 +155,12 @@
 			files = (
 				9BAA0BA92A7910910015D77A /* CheckListViewController.swift in Sources */,
 				9BA8C8452A78BB0E0002282C /* ViewController.swift in Sources */,
+				9B8BF78A2A85E099005C230F /* CompleteTableViewCell.swift in Sources */,
 				9BAA0BAB2A7914070015D77A /* CompleteListViewController.swift in Sources */,
 				9BAA0BB32A7A5A7A0015D77A /* TableViewCell.swift in Sources */,
 				9BA8C8412A78BB0E0002282C /* AppDelegate.swift in Sources */,
 				9BA8C8432A78BB0E0002282C /* SceneDelegate.swift in Sources */,
+				9BAA0BB72A81F4570015D77A /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

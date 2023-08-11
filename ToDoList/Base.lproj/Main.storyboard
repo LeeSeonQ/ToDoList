@@ -79,6 +79,9 @@
                                             <subviews>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" title="completeSwitch" translatesAutoresizingMaskIntoConstraints="NO" id="eC8-jI-EfO">
                                                     <rect key="frame" x="324" y="5.9999999999999982" width="51" height="31.333333333333329"/>
+                                                    <connections>
+                                                        <action selector="completeSwitchTapped:" destination="yYm-pE-nMV" eventType="valueChanged" id="EEC-ck-DOm"/>
+                                                    </connections>
                                                 </switch>
                                             </subviews>
                                             <constraints>
@@ -89,6 +92,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="completeSwitch" destination="eC8-jI-EfO" id="vvc-8Z-7AC"/>
+                                            <segue destination="13v-eG-7dd" kind="show" identifier="DS" id="MvV-ik-UG6"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -108,25 +112,94 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="CheckList" id="DZu-gc-2PG">
-                        <barButtonItem key="rightBarButtonItem" title="plusButtonItem" image="plus" catalog="system" id="urk-Tr-X6B">
-                            <connections>
-                                <action selector="addButtonTapped:" destination="yYm-pE-nMV" id="UqD-LJ-bQ1"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="plusButtonItem" image="plus" catalog="system" id="urk-Tr-X6B">
+                                <connections>
+                                    <action selector="addButtonTapped:" destination="yYm-pE-nMV" id="UqD-LJ-bQ1"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem style="plain" id="4Ve-3B-MLG">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="dF0-Mb-4Li">
+                                    <rect key="frame" x="248" y="5" width="87" height="34.333333333333336"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                    <connections>
+                                        <action selector="checkingButton:" destination="yYm-pE-nMV" eventType="touchUpInside" id="mPe-F7-5ln"/>
+                                    </connections>
+                                </button>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="addButton" destination="urk-Tr-X6B" id="7YR-dv-X4v"/>
                         <outlet property="checkListTableView" destination="nVx-T3-frb" id="yCp-Qr-SLj"/>
+                        <outlet property="checking" destination="4Ve-3B-MLG" id="eH0-rf-Ebg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zuq-bj-xSP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="739.69465648854964" y="-486.61971830985919"/>
         </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="y6B-4v-o00">
+            <objects>
+                <viewController id="13v-eG-7dd" customClass="DetailViewController" customModule="ToDoList" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4MS-mD-YRD">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="110" translatesAutoresizingMaskIntoConstraints="NO" id="gfn-kC-VUo">
+                                <rect key="frame" x="146.66666666666666" y="271" width="100" height="310"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tWj-gZ-VgS">
+                                        <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="off-rT-NJJ"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="삭제"/>
+                                        <connections>
+                                            <action selector="deleteButtonTapped:" destination="13v-eG-7dd" eventType="touchUpInside" id="tpp-NP-wl5"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wu2-yg-ZxT">
+                                        <rect key="frame" x="0.0" y="210" width="100" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="3NH-zn-eNh"/>
+                                            <constraint firstAttribute="height" constant="100" id="vJj-a4-ear"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="완료 탭"/>
+                                        <connections>
+                                            <action selector="throwButtonTapped:" destination="13v-eG-7dd" eventType="touchUpInside" id="Q4M-26-ORR"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="NUi-Lh-utp"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="gfn-kC-VUo" firstAttribute="centerX" secondItem="4MS-mD-YRD" secondAttribute="centerX" id="6YQ-tT-593"/>
+                            <constraint firstItem="gfn-kC-VUo" firstAttribute="centerY" secondItem="4MS-mD-YRD" secondAttribute="centerY" id="COZ-t0-VpG"/>
+                            <constraint firstItem="gfn-kC-VUo" firstAttribute="centerY" secondItem="4MS-mD-YRD" secondAttribute="centerY" id="tvU-0E-3bU"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="QPa-SB-1uC"/>
+                    <connections>
+                        <outlet property="deleteButton" destination="tWj-gZ-VgS" id="b40-Q8-0cs"/>
+                        <outlet property="throwCompleteButton" destination="Wu2-yg-ZxT" id="vEh-s5-dpO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="X11-yv-PeE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1510.6870229007634" y="-487.32394366197184"/>
+        </scene>
         <!--CompleteList-->
         <scene sceneID="Vz4-nN-NWh">
             <objects>
-                <viewController id="240-jQ-wuf" customClass="CompleteListViewController" customModule="ToDoList" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CompleteListViewController" id="240-jQ-wuf" customClass="CompleteListViewController" customModule="ToDoList" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zjp-aw-cuR">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -135,15 +208,19 @@
                                 <rect key="frame" x="0.0" y="103" width="393" height="715"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="bKe-pG-e2C">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="completeCell" id="bKe-pG-e2C" customClass="CompleteTableViewCell" customModule="ToDoList" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bKe-pG-e2C" id="UtE-qX-DyK">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bKe-pG-e2C" id="UtE-qX-DyK" customClass="Comple">
                                             <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="240-jQ-wuf" id="yU7-Ev-7bi"/>
+                                    <outlet property="delegate" destination="240-jQ-wuf" id="iR3-ay-sfS"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Inz-7d-9OY"/>
@@ -156,6 +233,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="CompleteList" id="Cyv-uZ-p3C"/>
+                    <connections>
+                        <outlet property="completeTableView" destination="VQh-Cb-pK5" id="bIx-Ah-ABG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xlf-dj-USu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -176,6 +256,12 @@
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZgK-sg-986" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="PTg-dw-sDa">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="413"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                </button>
             </objects>
             <point key="canvasLocation" x="-903.05343511450383" y="-268.3098591549296"/>
         </scene>
